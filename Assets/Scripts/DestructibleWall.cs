@@ -6,6 +6,7 @@ public class DestructibleWall : MonoBehaviour
 {
     public void DestroyWall()
     {
-        
+        PickupsSpawner.Instance.CreateRandomPickup(transform.position);
+        Destroy(gameObject);
     }
 }

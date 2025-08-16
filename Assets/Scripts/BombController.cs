@@ -16,6 +16,11 @@ public class BombController : MonoBehaviour
     private int bombsRemaining;
     private bool stayOnBomb = false;
     
+    public void IncreaseExplosionRadius(int amount = 1)
+    {
+        explosionRadius += amount;
+    }
+
     private void Awake()
     {
         bombsRemaining = bombAmount;

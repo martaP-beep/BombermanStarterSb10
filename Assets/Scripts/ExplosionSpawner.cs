@@ -35,16 +35,18 @@ public class ExplosionSpawner : MonoBehaviour
     private void TryToExplode(Vector3 position, Vector3 direction, int length)
     {
         // przerywamy jeœli nie ma pozosta³a d³ugoœæ eksplozji jest <= 0
-        
+        if (length <= 0) return;
+
         // dodajemy do pozycji kierunek
         // (jest d³ugoœci 1 i skierowany góra/dó³/lewo/prawo)
-        
+        position += direction;
+
         // sprawdzamy czy s¹ jakieœ mury na pozycji - jeœli tak to przerywamy
-        
+        if (CheckForWalls(position)) return;
         // jeœli murów nie ma spawnujemy eksplozjê
-        
+        SpawnExplosion(position);
         // próbujemy postawiæ nastêpn¹ eksplozjê w tym samym kierunku
-        
+        TryToExplode(position, direction, length - 1);
     }
 
     private void SpawnExplosion(Vector3 position)
@@ -59,7 +61,8 @@ public class ExplosionSpawner : MonoBehaviour
 
         if (wall.layer == DESTRUCTIBLE_LAYER_MASK)
         {
-            Destroy(wall);
+            //Destroy(wall);
+            wall.GetComponent<DestructibleWall>().DestroyWall();
         }
         return true;
     }

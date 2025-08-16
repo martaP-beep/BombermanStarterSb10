@@ -18,7 +18,8 @@ public class Bomb : MonoBehaviour
     {
         CancelInvoke(); // potrzebne do nastêpnej lekcji
         // stwórz eksplozjê, przeka¿ rozmiar od w³aœciciela bomby
-
+        ExplosionSpawner.Instance.StartExplosion(transform.position,
+            owner.GetExplosionRadius());
         // zwiêksz w³aœcicielowi liczbê dostêpnych bomb
         owner.IncreaseBombsRemaining();
 
